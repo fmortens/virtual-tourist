@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DEB025B822442D0A00F39A74 /* Virtual Tourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Tourist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEB025B822442D0A00F39A74 /* virtual-tourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "virtual-tourist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEB025BB22442D0A00F39A74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEB025C022442D0A00F39A74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DEB025C222442D0B00F39A74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -46,7 +46,7 @@
 		DEB025B922442D0A00F39A74 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DEB025B822442D0A00F39A74 /* Virtual Tourist.app */,
+				DEB025B822442D0A00F39A74 /* virtual-tourist.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,9 +83,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DEB025B722442D0A00F39A74 /* Virtual Tourist */ = {
+		DEB025B722442D0A00F39A74 /* virtual-tourist */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DEB025CA22442D0B00F39A74 /* Build configuration list for PBXNativeTarget "Virtual Tourist" */;
+			buildConfigurationList = DEB025CA22442D0B00F39A74 /* Build configuration list for PBXNativeTarget "virtual-tourist" */;
 			buildPhases = (
 				DEB025B422442D0A00F39A74 /* Sources */,
 				DEB025B522442D0A00F39A74 /* Frameworks */,
@@ -95,9 +95,9 @@
 			);
 			dependencies = (
 			);
-			name = "Virtual Tourist";
+			name = "virtual-tourist";
 			productName = "virtual-tourist";
-			productReference = DEB025B822442D0A00F39A74 /* Virtual Tourist.app */;
+			productReference = DEB025B822442D0A00F39A74 /* virtual-tourist.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -115,7 +115,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DEB025B322442D0A00F39A74 /* Build configuration list for PBXProject "Virtual Tourist" */;
+			buildConfigurationList = DEB025B322442D0A00F39A74 /* Build configuration list for PBXProject "virtual-tourist" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -128,7 +128,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DEB025B722442D0A00F39A74 /* Virtual Tourist */,
+				DEB025B722442D0A00F39A74 /* virtual-tourist */,
 			);
 		};
 /* End PBXProject section */
@@ -333,7 +333,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DEB025B322442D0A00F39A74 /* Build configuration list for PBXProject "Virtual Tourist" */ = {
+		DEB025B322442D0A00F39A74 /* Build configuration list for PBXProject "virtual-tourist" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DEB025C822442D0B00F39A74 /* Debug */,
@@ -342,7 +342,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DEB025CA22442D0B00F39A74 /* Build configuration list for PBXNativeTarget "Virtual Tourist" */ = {
+		DEB025CA22442D0B00F39A74 /* Build configuration list for PBXNativeTarget "virtual-tourist" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DEB025CB22442D0B00F39A74 /* Debug */,
