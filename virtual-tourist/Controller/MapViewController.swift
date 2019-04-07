@@ -16,6 +16,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     var dataController: DataController!
     var fetchedResultsController: NSFetchedResultsController<MapPoint>!
+    var selectedObjectId: NSManagedObjectID?
     
     private var mapChangedFromUserInteraction = false
     
@@ -92,18 +93,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         if let mapPoints: [MapPoint] = fetchedResultsController.fetchedObjects {
             self.mapView.removeAnnotations(self.mapView.annotations)
             
-            var annotations = [MKPointAnnotation]()
+            var annotations = [AnnotationWithObjectId]()
             
             for mapPoint in mapPoints {
-                let annotation = MKPointAnnotation()
+                let annotation = AnnotationWithObjectId()
                 
                 annotation.coordinate = CLLocationCoordinate2D(
                     latitude: Double(mapPoint.latitude),
                     longitude: Double(mapPoint.longitude)
                 )
                 
-//                annotation.title = mapPoint.title
-//                annotation.subtitle = mapPoint.subtitle
+                annotation.objectId = mapPoint.objectID
                 
                 annotations.append(annotation)
             }
@@ -115,7 +115,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func addAnnotation(_ mapPoint: MapPoint) {
-        let annotation = MKPointAnnotation()
+        let annotation = AnnotationWithObjectId()
+        
+        annotation.objectId = mapPoint.objectID
         
         annotation.coordinate = CLLocationCoordinate2D(
             latitude: Double(mapPoint.latitude),
@@ -150,8 +152,36 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
         if let selectedAnnotation = view.annotation {
-            print("Map annotation was selected! \(String(describing: selectedAnnotation.coordinate))")
+            let customAnnotation = selectedAnnotation.self as! AnnotationWithObjectId
+            
+            // find mapPoint with the matching coordinates and pass it via segue to the album view
+            print("Map annotation was selected! \(String(describing: customAnnotation.objectId))")
+            
+            selectedObjectId = customAnnotation.objectId
+            
+            self.performSegue(withIdentifier: "openAlbumModal", sender: self)
         }
         
     }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        selectedObjectId = nil
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.destination is AlbumModalViewController {
+            let viewController = segue.destination as? AlbumModalViewController
+            viewController?.objectId = selectedObjectId
+        }
+        
+    }
+    
+}
+
+class AnnotationWithObjectId: MKPointAnnotation {
+    
+    var objectId: NSManagedObjectID?
+    
 }

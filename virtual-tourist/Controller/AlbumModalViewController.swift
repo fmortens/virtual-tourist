@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import MapKit
 import CoreData
 
 class AlbumModalViewController: UIViewController {
     
+    var objectId: NSManagedObjectID?
+    
     override func viewDidLoad() {
-         print("OK, we have a modal")
+        print("OK, we have a modal and we want to look at: \(String(describing: objectId))")
     }
     
 }
