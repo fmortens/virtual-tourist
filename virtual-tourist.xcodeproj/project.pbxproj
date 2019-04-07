@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DE089BB3224FEA37009C5E74 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DE089BB1224FEA37009C5E74 /* DataModel.xcdatamodeld */; };
 		DE089BB5224FEBDC009C5E74 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE089BB4224FEBDC009C5E74 /* DataController.swift */; };
+		DE3052EA225A49CE005D5535 /* AlbumModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3052E9225A49CE005D5535 /* AlbumModalViewController.swift */; };
 		DEB025BC22442D0A00F39A74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB025BB22442D0A00F39A74 /* AppDelegate.swift */; };
 		DEB025C122442D0A00F39A74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB025BF22442D0A00F39A74 /* Main.storyboard */; };
 		DEB025C322442D0B00F39A74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEB025C222442D0B00F39A74 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		DE089BB2224FEA37009C5E74 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		DE089BB4224FEBDC009C5E74 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		DE3052E9225A49CE005D5535 /* AlbumModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModalViewController.swift; sourceTree = "<group>"; };
 		DEB025B822442D0A00F39A74 /* virtual-tourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "virtual-tourist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEB025BB22442D0A00F39A74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEB025C022442D0A00F39A74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				DEB025CE2244384400F39A74 /* MapViewController.swift */,
+				DE3052E9225A49CE005D5535 /* AlbumModalViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE3052EA225A49CE005D5535 /* AlbumModalViewController.swift in Sources */,
 				DE089BB3224FEA37009C5E74 /* DataModel.xcdatamodeld in Sources */,
 				DE089BB5224FEBDC009C5E74 /* DataController.swift in Sources */,
 				DEB025CF2244384400F39A74 /* MapViewController.swift in Sources */,

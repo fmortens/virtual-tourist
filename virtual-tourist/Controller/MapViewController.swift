@@ -82,8 +82,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         newMapPoint.creationDate = Date()
         newMapPoint.latitude = Float(coordinate.latitude)
         newMapPoint.longitude = Float(coordinate.longitude)
-        newMapPoint.title = "New location"
-        newMapPoint.subtitle = "A brand new point"
         
         try? dataController.viewContext.save()
         
@@ -104,8 +102,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     longitude: Double(mapPoint.longitude)
                 )
                 
-                annotation.title = mapPoint.title
-                annotation.subtitle = mapPoint.subtitle
+//                annotation.title = mapPoint.title
+//                annotation.subtitle = mapPoint.subtitle
                 
                 annotations.append(annotation)
             }
@@ -123,9 +121,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             latitude: Double(mapPoint.latitude),
             longitude: Double(mapPoint.longitude)
         )
-        
-        annotation.title = mapPoint.title
-        annotation.subtitle = mapPoint.subtitle
         
         self.mapView.addAnnotation(annotation)
     }
@@ -150,5 +145,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         
         return false
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
+        if let selectedAnnotation = view.annotation {
+            print("Map annotation was selected! \(String(describing: selectedAnnotation.coordinate))")
+        }
+        
     }
 }
