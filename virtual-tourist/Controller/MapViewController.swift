@@ -155,8 +155,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             let customAnnotation = selectedAnnotation.self as! AnnotationWithObjectId
             
             // find mapPoint with the matching coordinates and pass it via segue to the album view
-            print("Map annotation was selected! \(String(describing: customAnnotation.objectId))")
-            
             selectedObjectId = customAnnotation.objectId
             
             self.performSegue(withIdentifier: "openAlbumModal", sender: self)
@@ -173,7 +171,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         if segue.destination is AlbumModalViewController {
             let viewController = segue.destination as? AlbumModalViewController
-            viewController?.objectId = selectedObjectId
+            
+            let selectedMapPoint = fetchedResultsController.managedObjectContext.object(
+                with: selectedObjectId!
+            )
+            
+            viewController?.selectedMapPoint = selectedMapPoint as? MapPoint
         }
         
     }
