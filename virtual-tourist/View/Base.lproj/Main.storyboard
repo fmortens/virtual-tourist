@@ -49,23 +49,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D0D-rQ-fjV">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybridFlyover" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsCompass="NO" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LK6-6o-zo6">
                                 <rect key="frame" x="0.0" y="64" width="375" height="300"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="Lwi-XU-5rG"/>
+                                    <constraint firstAttribute="height" constant="300" id="VtT-Cr-Cfm"/>
                                 </constraints>
-                            </imageView>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="D0D-rQ-fjV" firstAttribute="top" secondItem="R3x-np-nbu" secondAttribute="top" id="BNL-tu-JI8"/>
-                            <constraint firstItem="D0D-rQ-fjV" firstAttribute="trailing" secondItem="R3x-np-nbu" secondAttribute="trailing" id="OMQ-xK-9Xy"/>
-                            <constraint firstItem="D0D-rQ-fjV" firstAttribute="leading" secondItem="R3x-np-nbu" secondAttribute="leading" id="s5a-Um-mNV"/>
+                            <constraint firstItem="R3x-np-nbu" firstAttribute="trailing" secondItem="LK6-6o-zo6" secondAttribute="trailing" id="A30-oO-erP"/>
+                            <constraint firstItem="LK6-6o-zo6" firstAttribute="leading" secondItem="R3x-np-nbu" secondAttribute="leading" id="ZR1-fS-5VI"/>
+                            <constraint firstItem="LK6-6o-zo6" firstAttribute="top" secondItem="R3x-np-nbu" secondAttribute="top" id="xpU-oy-bzr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="R3x-np-nbu"/>
                     </view>
                     <connections>
-                        <outlet property="mapImage" destination="D0D-rQ-fjV" id="Bqg-pq-BnL"/>
+                        <outlet property="mapView" destination="LK6-6o-zo6" id="cag-oN-BXm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mZD-vs-xMU" userLabel="First Responder" sceneMemberID="firstResponder"/>

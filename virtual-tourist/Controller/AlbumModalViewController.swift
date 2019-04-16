@@ -12,54 +12,49 @@ import CoreData
 
 class AlbumModalViewController: UIViewController {
     
-    @IBOutlet weak var mapImage: UIImageView!
+    @IBOutlet weak var mapView: MKMapView!
     
     var dataController: DataController!
-    var selectedMapPoint: MapPoint?
+    var mapPoint: MapPoint?
     var selectedObjectId: NSManagedObjectID?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        
+        if let objectId = selectedObjectId {
+            mapPoint = (dataController.viewContext.object(
+                with: objectId
+            ) as! MapPoint)
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let objectId = selectedObjectId {
-            let object = dataController.viewContext.object(with: objectId)
-            createMapSnapshot(mapPoint: object as! MapPoint)
+        let annotation = MKPointAnnotation()
+        
+        if let mapPoint = self.mapPoint {
+            annotation.coordinate = CLLocationCoordinate2D(
+                latitude: Double(mapPoint.latitude),
+                longitude: Double(mapPoint.longitude)
+            )
+        
+            mapView.addAnnotation(annotation)
+        
+            let region = MKCoordinateRegion(
+                center: CLLocationCoordinate2D(
+                    latitude: Double(mapPoint.latitude),
+                    longitude: Double(mapPoint.longitude)
+                ),
+                latitudinalMeters: CLLocationDistance(exactly: 10000)!,
+                longitudinalMeters: CLLocationDistance(exactly: 10000)!
+            )
+        
+            mapView.setRegion(
+                mapView.regionThatFits(region),
+                animated: true
+            )
         }
-    }
-    
-    func createMapSnapshot(mapPoint: MapPoint) {
-        
-        let mapSnapshotOptions = MKMapSnapshotter.Options()
-        
-        let location = CLLocationCoordinate2DMake(
-            CLLocationDegrees(mapPoint.latitude),
-            CLLocationDegrees(mapPoint.longitude)
-        )
-        
-        let region = MKCoordinateRegion(
-            center: location,
-            latitudinalMeters: 10000,
-            longitudinalMeters: 10000
-        )
-        
-        mapSnapshotOptions.region = region
-        mapSnapshotOptions.scale = UIScreen.main.scale
-        mapSnapshotOptions.size = CGSize(width: 300, height: 300)
-        mapSnapshotOptions.showsBuildings = true
-        mapSnapshotOptions.showsPointsOfInterest = true
-        
-        let snapShotter = MKMapSnapshotter(options: mapSnapshotOptions)
-        
-        snapShotter.start {
-            (snapshot:MKMapSnapshotter.Snapshot?, error:Error?) in
-                self.mapImage.image = snapshot?.image
-        }
-        
-    }
-    
-    @IBAction func dismissModal(_ sender: Any) {
-        
-        self.dismiss(animated: true, completion: nil)
-        
     }
 }
