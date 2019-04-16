@@ -57,4 +57,13 @@ class AlbumModalViewController: UIViewController {
             )
         }
     }
+    
+    @IBAction func deleteMapPoint(_ sender: Any) {
+        
+        if let mapPoint = self.mapPoint {
+            dataController.viewContext.delete(mapPoint)
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+    }
 }
