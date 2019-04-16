@@ -38,8 +38,8 @@ class AlbumModalViewController: UIViewController {
         
         let region = MKCoordinateRegion(
             center: location,
-            latitudinalMeters: 5000,
-            longitudinalMeters: 5000
+            latitudinalMeters: 10000,
+            longitudinalMeters: 10000
         )
         
         mapSnapshotOptions.region = region
