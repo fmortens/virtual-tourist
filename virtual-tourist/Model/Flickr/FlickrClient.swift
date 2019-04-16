@@ -19,7 +19,7 @@ class FlickrClient {
             
             switch self {
             case .search(let apiKey, let latitude, let longitude):
-                return Endpoints.base + "&api_key=\(apiKey)&lat=\(latitude)&lon=\(longitude)&format=json&nojsoncallback=1"
+                return Endpoints.base + "&api_key=\(apiKey)&lat=\(latitude)&lon=\(longitude)&format=json&nojsoncallback=1&extras=url_q"
             }
         }
         

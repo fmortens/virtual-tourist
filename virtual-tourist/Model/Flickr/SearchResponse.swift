@@ -32,4 +32,18 @@ struct Photo: Codable {
     let ispublic: Int
     let isfriend: Int
     let isfamily: Int
+    let url: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case owner
+        case secret
+        case server
+        case farm
+        case title
+        case ispublic
+        case isfriend
+        case isfamily
+        case url = "url_q"
+    }
 }

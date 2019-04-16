@@ -9,5 +9,6 @@
 import Foundation
 
 enum ErrorType: String {
-    case Unknown = "An unknown error has occurred"
+    case NetworkError = "A network error occurred"
+    case DecodeError = "Could not decode response from Flickr"
 }
