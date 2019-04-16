@@ -15,6 +15,7 @@
 		DEB025C322442D0B00F39A74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEB025C222442D0B00F39A74 /* Assets.xcassets */; };
 		DEB025C622442D0B00F39A74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB025C422442D0B00F39A74 /* LaunchScreen.storyboard */; };
 		DEB025CF2244384400F39A74 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB025CE2244384400F39A74 /* MapViewController.swift */; };
+		DEF0FDB6226622B300FB5E08 /* AnnotationWithObjectId.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF0FDB5226622B300FB5E08 /* AnnotationWithObjectId.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		DEB025C522442D0B00F39A74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DEB025C722442D0B00F39A74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEB025CE2244384400F39A74 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		DEF0FDB5226622B300FB5E08 /* AnnotationWithObjectId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationWithObjectId.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 			children = (
 				DE089BB1224FEA37009C5E74 /* DataModel.xcdatamodeld */,
 				DE089BB4224FEBDC009C5E74 /* DataController.swift */,
+				DEF0FDB5226622B300FB5E08 /* AnnotationWithObjectId.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEF0FDB6226622B300FB5E08 /* AnnotationWithObjectId.swift in Sources */,
 				DE3052EA225A49CE005D5535 /* AlbumModalViewController.swift in Sources */,
 				DE089BB3224FEA37009C5E74 /* DataModel.xcdatamodeld in Sources */,
 				DE089BB5224FEBDC009C5E74 /* DataController.swift in Sources */,

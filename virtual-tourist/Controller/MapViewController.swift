@@ -180,8 +180,3 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
 }
 
-class AnnotationWithObjectId: MKPointAnnotation {
-    
-    var objectId: NSManagedObjectID?
-    
-}
