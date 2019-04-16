@@ -55,7 +55,17 @@ class AlbumModalViewController: UIViewController {
                 mapView.regionThatFits(region),
                 animated: true
             )
+            
+            
+            FlickrClient.loadImages(
+                latitude: Double(mapPoint.latitude),
+                longitude: Double(mapPoint.longitude),
+                completion: handleLoadImages)
         }
+    }
+    
+    func handleLoadImages(photos: Photos?, success: Bool, error: ErrorType?) {
+        print("handle image load \(photos)")
     }
     
     @IBAction func deleteMapPoint(_ sender: Any) {

@@ -16,6 +16,10 @@
 		DEB025C622442D0B00F39A74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB025C422442D0B00F39A74 /* LaunchScreen.storyboard */; };
 		DEB025CF2244384400F39A74 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB025CE2244384400F39A74 /* MapViewController.swift */; };
 		DEF0FDB6226622B300FB5E08 /* AnnotationWithObjectId.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF0FDB5226622B300FB5E08 /* AnnotationWithObjectId.swift */; };
+		DEF0FDB822663A3200FB5E08 /* FlickrClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF0FDB722663A3200FB5E08 /* FlickrClient.swift */; };
+		DEF0FDBA22663D3600FB5E08 /* FlickrApi.plist in Resources */ = {isa = PBXBuildFile; fileRef = DEF0FDB922663D3600FB5E08 /* FlickrApi.plist */; };
+		DEF0FDBD2266527000FB5E08 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF0FDBC2266527000FB5E08 /* Errors.swift */; };
+		DEF0FDBF2266552B00FB5E08 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF0FDBE2266552B00FB5E08 /* SearchResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		DEB025C722442D0B00F39A74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEB025CE2244384400F39A74 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DEF0FDB5226622B300FB5E08 /* AnnotationWithObjectId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationWithObjectId.swift; sourceTree = "<group>"; };
+		DEF0FDB722663A3200FB5E08 /* FlickrClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrClient.swift; sourceTree = "<group>"; };
+		DEF0FDB922663D3600FB5E08 /* FlickrApi.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FlickrApi.plist; sourceTree = "<group>"; };
+		DEF0FDBC2266527000FB5E08 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		DEF0FDBE2266552B00FB5E08 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +57,7 @@
 				DE089BB1224FEA37009C5E74 /* DataModel.xcdatamodeld */,
 				DE089BB4224FEBDC009C5E74 /* DataController.swift */,
 				DEF0FDB5226622B300FB5E08 /* AnnotationWithObjectId.swift */,
+				DEF0FDBB22663E1500FB5E08 /* Flickr */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -98,6 +107,17 @@
 				DEB025C222442D0B00F39A74 /* Assets.xcassets */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		DEF0FDBB22663E1500FB5E08 /* Flickr */ = {
+			isa = PBXGroup;
+			children = (
+				DEF0FDB722663A3200FB5E08 /* FlickrClient.swift */,
+				DEF0FDBC2266527000FB5E08 /* Errors.swift */,
+				DEF0FDB922663D3600FB5E08 /* FlickrApi.plist */,
+				DEF0FDBE2266552B00FB5E08 /* SearchResponse.swift */,
+			);
+			path = Flickr;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEB025C622442D0B00F39A74 /* LaunchScreen.storyboard in Resources */,
+				DEF0FDBA22663D3600FB5E08 /* FlickrApi.plist in Resources */,
 				DEB025C322442D0B00F39A74 /* Assets.xcassets in Resources */,
 				DEB025C122442D0A00F39A74 /* Main.storyboard in Resources */,
 			);
@@ -172,8 +193,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEF0FDB6226622B300FB5E08 /* AnnotationWithObjectId.swift in Sources */,
+				DEF0FDBF2266552B00FB5E08 /* SearchResponse.swift in Sources */,
 				DE3052EA225A49CE005D5535 /* AlbumModalViewController.swift in Sources */,
+				DEF0FDB822663A3200FB5E08 /* FlickrClient.swift in Sources */,
 				DE089BB3224FEA37009C5E74 /* DataModel.xcdatamodeld in Sources */,
+				DEF0FDBD2266527000FB5E08 /* Errors.swift in Sources */,
 				DE089BB5224FEBDC009C5E74 /* DataController.swift in Sources */,
 				DEB025CF2244384400F39A74 /* MapViewController.swift in Sources */,
 				DEB025BC22442D0A00F39A74 /* AppDelegate.swift in Sources */,
