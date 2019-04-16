@@ -16,13 +16,15 @@ class AlbumModalViewController: UIViewController {
     
     var dataController: DataController!
     var selectedMapPoint: MapPoint?
+    var selectedObjectId: NSManagedObjectID?
     
-    override func viewDidLoad() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        if let selectedMapPoint = self.selectedMapPoint {
-            createMapSnapshot(mapPoint: selectedMapPoint)
+        if let objectId = selectedObjectId {
+            let object = dataController.viewContext.object(with: objectId)
+            createMapSnapshot(mapPoint: object as! MapPoint)
         }
-        
     }
     
     func createMapSnapshot(mapPoint: MapPoint) {
@@ -41,11 +43,8 @@ class AlbumModalViewController: UIViewController {
         )
         
         mapSnapshotOptions.region = region
-        
         mapSnapshotOptions.scale = UIScreen.main.scale
-        
         mapSnapshotOptions.size = CGSize(width: 300, height: 300)
-        
         mapSnapshotOptions.showsBuildings = true
         mapSnapshotOptions.showsPointsOfInterest = true
         
