@@ -57,15 +57,28 @@ class AlbumModalViewController: UIViewController {
             )
             
             
-            FlickrClient.loadImages(
+            FlickrClient.searchImages(
                 latitude: Double(mapPoint.latitude),
                 longitude: Double(mapPoint.longitude),
-                completion: handleLoadImages)
+                completion: handleSearchImages
+            )
         }
     }
     
-    func handleLoadImages(photos: Photos?, success: Bool, error: ErrorType?) {
-        print("handle image load \(photos)")
+    func handleSearchImages(photos: Photos?, success: Bool, error: ErrorType?) {
+        
+        if let photos = photos?.photo {
+            for photo: Photo in photos {
+                FlickrClient.loadImage(url: photo.url, completion: handleLoadImage)
+            }
+        }
+        
+    }
+    
+    func handleLoadImage(image: UIImage?, success: Bool, error: ErrorType?) {
+        if success {
+            print(image.debugDescription)
+        }
     }
     
     @IBAction func deleteMapPoint(_ sender: Any) {

@@ -9,7 +9,6 @@
 import Foundation
 
 struct SearchResponse: Codable {
-    
     let photos: Photos
     let stat: String
 }
