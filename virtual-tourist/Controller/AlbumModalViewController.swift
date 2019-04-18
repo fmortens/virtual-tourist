@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreData
 
-class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
+class AlbumModalViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -91,7 +91,7 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
             fetchRequest: fetchRequest,
             managedObjectContext: dataController.viewContext,
             sectionNameKeyPath: nil,
-            cacheName: "\(mapPoint)-photos"
+            cacheName: "\(mapPoint!)-photos"
         )
         
         fetchedResultsController.delegate = self
@@ -158,6 +158,12 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = collectionView.bounds.width/3.0
+        let cellHeight = cellWidth
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
     
     @IBAction func deleteMapPoint(_ sender: Any) {
         
