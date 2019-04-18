@@ -91,7 +91,7 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
             fetchRequest: fetchRequest,
             managedObjectContext: dataController.viewContext,
             sectionNameKeyPath: nil,
-            cacheName: "mapPoint-photos"
+            cacheName: "\(mapPoint)-photos"
         )
         
         fetchedResultsController.delegate = self
