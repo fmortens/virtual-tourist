@@ -8,11 +8,12 @@
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="mapPoint" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="data" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="mapPoint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MapPoint" inverseName="photos" inverseEntity="MapPoint" syncable="YES"/>
     </entity>
     <elements>
         <element name="MapPoint" positionX="-1164.515625" positionY="-9771.640625" width="128" height="118"/>
-        <element name="Photo" positionX="-868.32421875" positionY="-9762.65234375" width="128" height="73"/>
+        <element name="Photo" positionX="-868.32421875" positionY="-9762.65234375" width="128" height="88"/>
     </elements>
 </model>

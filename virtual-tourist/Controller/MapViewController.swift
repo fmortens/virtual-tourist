@@ -173,7 +173,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         if segue.destination is AlbumModalViewController {
             let viewController = segue.destination as? AlbumModalViewController
             
-            viewController?.selectedObjectId = selectedObjectId
+            let mapPoint = (dataController.viewContext.object(
+                with: selectedObjectId!
+                    ) as! MapPoint)
+            
+            
+            viewController?.mapPoint = mapPoint
             viewController?.dataController = dataController
         }
         
