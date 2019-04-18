@@ -49,26 +49,65 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsCompass="NO" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LK6-6o-zo6">
-                                <rect key="frame" x="0.0" y="64" width="375" height="300"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="42r-ef-AqM">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsCompass="NO" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LK6-6o-zo6">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="VtT-Cr-Cfm"/>
+                                        </constraints>
+                                    </mapView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4r3-ZD-Jeg">
+                                        <rect key="frame" x="0.0" y="301" width="375" height="258"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aXM-2d-Unf">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" id="BXc-zI-H2I">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                            </stackView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3SH-FN-wW2">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="VtT-Cr-Cfm"/>
+                                    <constraint firstAttribute="height" constant="44" id="UWd-D8-chC"/>
                                 </constraints>
-                            </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNO-7a-jWm">
-                                <rect key="frame" x="17" y="617" width="45" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Delete"/>
-                                <connections>
-                                    <action selector="deleteMapPoint:" destination="mg1-oL-JNX" eventType="touchUpInside" id="aKS-g8-yjb"/>
-                                </connections>
-                            </button>
+                                <items>
+                                    <barButtonItem style="plain" id="aqq-Wm-H69">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gNO-7a-jWm">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Delete"/>
+                                            <connections>
+                                                <action selector="deleteMapPoint:" destination="mg1-oL-JNX" eventType="touchUpInside" id="aKS-g8-yjb"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="R3x-np-nbu" firstAttribute="trailing" secondItem="LK6-6o-zo6" secondAttribute="trailing" id="A30-oO-erP"/>
-                            <constraint firstItem="LK6-6o-zo6" firstAttribute="leading" secondItem="R3x-np-nbu" secondAttribute="leading" id="ZR1-fS-5VI"/>
-                            <constraint firstItem="LK6-6o-zo6" firstAttribute="top" secondItem="R3x-np-nbu" secondAttribute="top" id="xpU-oy-bzr"/>
+                            <constraint firstItem="42r-ef-AqM" firstAttribute="top" secondItem="R3x-np-nbu" secondAttribute="top" id="7be-3t-S9q"/>
+                            <constraint firstItem="3SH-FN-wW2" firstAttribute="bottom" secondItem="R3x-np-nbu" secondAttribute="bottom" id="FwY-kw-xjM"/>
+                            <constraint firstItem="3SH-FN-wW2" firstAttribute="leading" secondItem="R3x-np-nbu" secondAttribute="leading" id="RFQ-2T-ZkJ"/>
+                            <constraint firstItem="42r-ef-AqM" firstAttribute="leading" secondItem="R3x-np-nbu" secondAttribute="leading" id="RT9-SE-GoZ"/>
+                            <constraint firstItem="3SH-FN-wW2" firstAttribute="trailing" secondItem="R3x-np-nbu" secondAttribute="trailing" id="lZm-ZH-qUC"/>
+                            <constraint firstItem="42r-ef-AqM" firstAttribute="trailing" secondItem="R3x-np-nbu" secondAttribute="trailing" id="puj-5X-Mth"/>
+                            <constraint firstItem="3SH-FN-wW2" firstAttribute="top" secondItem="42r-ef-AqM" secondAttribute="bottom" id="vmU-51-5Lg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="R3x-np-nbu"/>
                     </view>

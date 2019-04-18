@@ -83,6 +83,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         newMapPoint.creationDate = Date()
         newMapPoint.latitude = Float(coordinate.latitude)
         newMapPoint.longitude = Float(coordinate.longitude)
+        newMapPoint.photosLoaded = false
         
         try? dataController.viewContext.save()
         

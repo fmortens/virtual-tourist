@@ -9,19 +9,19 @@
 import Foundation
 
 struct SearchResponse: Codable {
-    let photos: Photos
+    let photos: FlickrPhotos
     let stat: String
 }
 
-struct Photos: Codable {
+struct FlickrPhotos: Codable {
     let page: Int
     let pages: Int
     let perpage: Int
     let total: String
-    let photo: [Photo]
+    let photo: [FlickrPhoto]
 }
 
-struct Photo: Codable {
+struct FlickrPhoto: Codable {
     let id: String
     let owner: String
     let secret: String

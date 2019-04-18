@@ -56,28 +56,38 @@ class AlbumModalViewController: UIViewController {
                 animated: true
             )
             
-            
+            if mapPoint.photosLoaded {
+        
+            print("number of stored photos: \(String(describing: mapPoint.photos?.count))")
+            } else {
             FlickrClient.searchImages(
                 latitude: Double(mapPoint.latitude),
                 longitude: Double(mapPoint.longitude),
                 completion: handleSearchImages
             )
+            }
         }
     }
     
-    func handleSearchImages(photos: Photos?, success: Bool, error: ErrorType?) {
+    func handleSearchImages(photos: FlickrPhotos?, success: Bool, error: ErrorType?) {
         
         if let photos = photos?.photo {
-            for photo: Photo in photos {
+            for photo: FlickrPhoto in photos {
                 FlickrClient.loadImage(url: photo.url, completion: handleLoadImage)
             }
         }
         
+        mapPoint?.photosLoaded = true
+        try? dataController.viewContext.save()
+        
     }
     
-    func handleLoadImage(image: UIImage?, success: Bool, error: ErrorType?) {
+    func handleLoadImage(imageData: Data?, success: Bool, error: ErrorType?) {
         if success {
-            print(image.debugDescription)
+            let photo = Photo(context: dataController.viewContext)
+            photo.data = imageData
+            photo.mapPoint = mapPoint
+            try? dataController.viewContext.save()
         }
     }
     

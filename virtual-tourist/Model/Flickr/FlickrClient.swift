@@ -25,7 +25,7 @@ class FlickrClient {
                     let dict = NSDictionary(contentsOfFile: path)!
                     let flickrApiKey = dict["FLICKR_API_KEY"] as! String
                     
-                    return Endpoints.base + "&api_key=\(flickrApiKey)&lat=\(latitude)&lon=\(longitude)&format=json&nojsoncallback=1&extras=url_q"
+                    return Endpoints.base + "&api_key=\(flickrApiKey)&lat=\(latitude)&lon=\(longitude)&format=json&nojsoncallback=1&extras=url_q&per_page=9"
             }
         }
         
@@ -37,7 +37,7 @@ class FlickrClient {
     class func searchImages(
         latitude: Double,
         longitude: Double,
-        completion: @escaping (Photos?, Bool, ErrorType?) -> Void
+        completion: @escaping (FlickrPhotos?, Bool, ErrorType?) -> Void
     ) {
         
         let request = URLRequest(url: Endpoints.search(latitude, longitude).url)
@@ -73,13 +73,12 @@ class FlickrClient {
     
     class func loadImage(
         url: String,
-        completion: @escaping (UIImage?, Bool, ErrorType?) -> Void
+        completion: @escaping (Data?, Bool, ErrorType?) -> Void
     ) {
         do {
             let url = URL(string: url)!
             let imgData = try Data(contentsOf: url)
-            let image = UIImage(data: imgData)
-            completion(image, true, nil)
+            completion(imgData, true, nil)
         } catch {
             completion(nil, false, ErrorType.NetworkError)
         }
