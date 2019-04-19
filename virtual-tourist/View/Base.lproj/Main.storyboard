@@ -106,11 +106,22 @@
                                 <items>
                                     <barButtonItem style="plain" id="aqq-Wm-H69">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gNO-7a-jWm">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="44"/>
+                                            <rect key="frame" x="16" y="0.0" width="90" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Delete"/>
+                                            <state key="normal" title="Delete Pin"/>
                                             <connections>
                                                 <action selector="deleteMapPoint:" destination="mg1-oL-JNX" eventType="touchUpInside" id="aKS-g8-yjb"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="6il-dr-bxX"/>
+                                    <barButtonItem style="plain" id="K7Z-Qn-eMB">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7JG-Yx-jIg">
+                                            <rect key="frame" x="258" y="7" width="101" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="New collection"/>
+                                            <connections>
+                                                <action selector="loadNewCollection:" destination="mg1-oL-JNX" eventType="touchUpInside" id="vl9-Ss-cVq"/>
                                             </connections>
                                         </button>
                                     </barButtonItem>

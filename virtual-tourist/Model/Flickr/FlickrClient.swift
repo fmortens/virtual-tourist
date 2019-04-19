@@ -24,8 +24,9 @@ class FlickrClient {
                     let path = Bundle.main.path(forResource: "FlickrApi", ofType: "plist")!
                     let dict = NSDictionary(contentsOfFile: path)!
                     let flickrApiKey = dict["FLICKR_API_KEY"] as! String
+                    let randomPage = Int.random(in: 0...10)
                     
-                    return Endpoints.base + "&api_key=\(flickrApiKey)&lat=\(latitude)&lon=\(longitude)&format=json&nojsoncallback=1&extras=url_q&per_page=9"
+                    return Endpoints.base + "&api_key=\(flickrApiKey)&lat=\(latitude)&lon=\(longitude)&format=json&nojsoncallback=1&extras=url_q&per_page=18&page=\(randomPage)"
             }
         }
         

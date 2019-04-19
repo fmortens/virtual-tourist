@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreData
 
-class AlbumModalViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class AlbumModalViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -22,13 +22,14 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.allowsMultipleSelection = true
+        
         setupFetchedResultsController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Super important to set up the controller in both viewDidLoad and viewWillAppear, otherwise it will crash when returning here after opening a notebook
         setupFetchedResultsController()
         
         let annotation = MKPointAnnotation()
@@ -165,11 +166,53 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource, UI
         return CGSize(width: cellWidth, height: cellHeight)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            cell.layer.opacity = 0.5
+            print("Selected \(indexPath)")
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            cell.layer.opacity = 1
+            print("Deselected \(indexPath)")
+        }
+        
+    }
+    
     @IBAction func deleteMapPoint(_ sender: Any) {
         
         if let mapPoint = self.mapPoint {
             dataController.viewContext.delete(mapPoint)
+            try? dataController.viewContext.save()
             self.navigationController?.popViewController(animated: true)
+        }
+        
+    }
+    @IBAction func loadNewCollection(_ sender: Any) {
+        
+        if let mapPoint = self.mapPoint,
+           let photos = mapPoint.photos {
+            
+            mapPoint.photosLoaded = false
+            
+            for photo in photos {
+                dataController.viewContext.delete(photo as! NSManagedObject)
+                try? dataController.viewContext.save()
+            }
+            
+            
+            
+            FlickrClient.searchImages(
+                    latitude: Double(mapPoint.latitude),
+                    longitude: Double(mapPoint.longitude),
+                    completion: handleSearchImages
+                )
+            
         }
         
     }

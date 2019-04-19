@@ -12,4 +12,14 @@ class PhotoCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
+//    override var isSelected: Bool{
+//        willSet{
+//            super.isSelected = newValue
+//            if newValue {
+//                self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+//            } else {
+//                self.transform = CGAffineTransform.identity
+//            }
+//        }
+//    }
 }
