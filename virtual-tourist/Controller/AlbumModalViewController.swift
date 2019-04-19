@@ -12,6 +12,7 @@ import CoreData
 
 class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
 
+    @IBOutlet weak var noPhotosText: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -24,6 +25,7 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
         super.viewDidLoad()
         
         collectionView.allowsMultipleSelection = true
+        noPhotosText.isHidden = true
         
         setupFetchedResultsController()
     }
@@ -58,9 +60,11 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
             )
             
             if mapPoint.photosLoaded {
-                print("number of stored photos: \(String(describing: mapPoint.photos?.count))")
+                if mapPoint.photos?.count == 0 {
+                    noPhotosText.isHidden = false
+                }
             } else {
-                print("loading images")
+                noPhotosText.isHidden = true
                 FlickrClient.searchImages(
                     latitude: Double(mapPoint.latitude),
                     longitude: Double(mapPoint.longitude),
@@ -109,11 +113,17 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
     func handleSearchImages(photos: FlickrPhotos?, success: Bool, error: ErrorType?) {
         
         if let photos = photos?.photo {
+            
+            if photos.count == 0 {
+                noPhotosText.isHidden = false
+            } else {
+            noPhotosText.isHidden = true
             for photo: FlickrPhoto in photos {
                 FlickrClient.loadImage(
                     url: photo.url,
                     completion: handleLoadImage
                 )
+            }
             }
         }
         
@@ -130,7 +140,6 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
             photo.mapPoint = mapPoint
             photo.creationDate = Date()
             
-            print("Saving photo")
             try? dataController.viewContext.save()
         }
     }
@@ -180,10 +189,7 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
 extension AlbumModalViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let numberOfItemsInSection = fetchedResultsController.sections![section].numberOfObjects
-        print("numberOfItemsInSection: \(numberOfItemsInSection)")
-        
-        return numberOfItemsInSection
+        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     func collectionView(
@@ -250,18 +256,12 @@ extension AlbumModalViewController: NSFetchedResultsControllerDelegate {
     ) {
         switch type {
         case .insert:
-            print("Photo added")
             collectionView.insertItems(at: [newIndexPath!])
-            break
         case .delete:
-            print("Photo deleted")
             collectionView.deleteItems(at: [indexPath!])
-            break
         case .update:
-            print("Photo updated")
             collectionView.reloadItems(at: [indexPath!])
         case .move:
-            print("Photo moved")
             collectionView.moveItem(at: indexPath!, to: newIndexPath!)
         }
     }
@@ -276,11 +276,9 @@ extension AlbumModalViewController: NSFetchedResultsControllerDelegate {
         
         switch type {
             case .insert:
-                print("INSERT")
                 collectionView.insertSections(indexSet)
             break
             case .delete:
-                print("DELETE")
                 collectionView.deleteSections(indexSet)
             break
             case .update, .move:

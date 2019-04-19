@@ -67,6 +67,13 @@
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
+                                        <label key="backgroundView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kFO-68-S7q">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="258"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="PhotoCell" id="BXc-zI-H2I" userLabel="PhotoCell" customClass="PhotoCell" customModule="virtual_tourist" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -154,6 +161,7 @@
                     <connections>
                         <outlet property="collectionView" destination="4r3-ZD-Jeg" id="fQp-15-DSP"/>
                         <outlet property="mapView" destination="LK6-6o-zo6" id="cag-oN-BXm"/>
+                        <outlet property="noPhotosText" destination="kFO-68-S7q" id="nvS-GS-Cq6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mZD-vs-xMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
