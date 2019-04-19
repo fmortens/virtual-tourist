@@ -189,7 +189,7 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
 extension AlbumModalViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
+        return mapPoint.photos?.count ?? 0//fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     func collectionView(
@@ -257,10 +257,24 @@ extension AlbumModalViewController: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             collectionView.insertItems(at: [newIndexPath!])
+            
+            if !noPhotosText.isHidden {
+                noPhotosText.isHidden = true
+            }
+            
         case .delete:
-            collectionView.deleteItems(at: [indexPath!])
+            
+            if mapPoint.photos!.count > 1 {
+                collectionView.deleteItems(at: [indexPath!])
+            } else {
+            
+            
+                noPhotosText.isHidden = false
+            }
+            
         case .update:
             collectionView.reloadItems(at: [indexPath!])
+            
         case .move:
             collectionView.moveItem(at: indexPath!, to: newIndexPath!)
         }
