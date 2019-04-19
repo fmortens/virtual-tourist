@@ -97,7 +97,7 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
             fetchRequest: fetchRequest,
             managedObjectContext: dataController.viewContext,
             sectionNameKeyPath: nil,
-            cacheName: "\(mapPoint!)-photos"
+            cacheName: "\(mapPoint.objectID)-photos"
         )
         
         fetchedResultsController.delegate = self
@@ -110,19 +110,28 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
     }
     
     
-    func handleSearchImages(photos: FlickrPhotos?, success: Bool, error: ErrorType?) {
+    func handleSearchImages(searchResults: FlickrPhotos?, success: Bool, error: ErrorType?) {
         
-        if let photos = photos?.photo {
+        if let photos = searchResults?.photo {
             
             if photos.count == 0 {
                 noPhotosText.isHidden = false
             } else {
             noPhotosText.isHidden = true
-            for photo: FlickrPhoto in photos {
-                FlickrClient.loadImage(
-                    url: photo.url,
-                    completion: handleLoadImage
-                )
+            for flickPhoto: FlickrPhoto in photos {
+                let photo = Photo(context: dataController.viewContext)
+                
+                photo.url = URL(string: flickPhoto.url)
+                photo.mapPoint = mapPoint
+                photo.creationDate = Date()
+                
+                try? dataController.viewContext.save()
+                
+                
+                                FlickrClient.loadImage(
+                                    photo: photo,
+                                    dataController: dataController
+                                )
             }
             }
         }
@@ -132,17 +141,17 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
         
     }
     
-    func handleLoadImage(imageData: Data?, success: Bool, error: ErrorType?) {
-        if success {
-            let photo = Photo(context: dataController.viewContext)
-            
-            photo.data = imageData
-            photo.mapPoint = mapPoint
-            photo.creationDate = Date()
-            
-            try? dataController.viewContext.save()
-        }
-    }
+//    func handleLoadImage(imageData: Data?, success: Bool, error: ErrorType?) {
+//        if success {
+//            let photo = Photo(context: dataController.viewContext)
+//
+//            photo.data = imageData
+//            photo.mapPoint = mapPoint
+//            photo.creationDate = Date()
+//
+//            try? dataController.viewContext.save()
+//        }
+//    }
     
     @IBAction func deleteMapPoint(_ sender: Any) {
         
@@ -189,7 +198,8 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
 extension AlbumModalViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mapPoint.photos?.count ?? 0//fetchedResultsController.sections?[section].numberOfObjects ?? 0
+        return mapPoint.photos?.count ?? 0
+        //return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     func collectionView(
@@ -204,8 +214,11 @@ extension AlbumModalViewController: UICollectionViewDelegateFlowLayout, UICollec
             for: indexPath
             ) as! PhotoCell
         
-        
-        cell.imageView.image = UIImage(data: photo.data!)
+        if let imageData = photo.data {
+            cell.imageView.image = UIImage(data: imageData)
+        } else {
+            cell.imageView.image = UIImage(named: "loadingImage")
+        }
         
         return cell
     }
@@ -221,9 +234,7 @@ extension AlbumModalViewController: UICollectionViewDelegateFlowLayout, UICollec
         
         if let cell = collectionView.cellForItem(at: indexPath) {
             cell.layer.opacity = 0.5
-            
             let photo = fetchedResultsController.object(at: indexPath)
-            
             photosToDelete.append(photo)
         }
         
