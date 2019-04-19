@@ -144,9 +144,9 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
     func handleLoadImage(success: Bool, error: ErrorType?) {
         // I thought I could show friendly error messages to the user here
         if success {
-            print("Image loaded successfully")
+            //print("Image loaded successfully")
         } else {
-            print("Image failed to load")
+            //print("Image failed to load")
         }
         
     }
@@ -196,7 +196,11 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
 extension AlbumModalViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
+        if let photos = mapPoint.photos {
+            return photos.count
+        } else {
+            return 0
+        }
     }
     
     func collectionView(
