@@ -49,120 +49,105 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="42r-ef-AqM">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
-                                <subviews>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsCompass="NO" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LK6-6o-zo6">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="300" id="VtT-Cr-Cfm"/>
-                                        </constraints>
-                                    </mapView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4r3-ZD-Jeg">
-                                        <rect key="frame" x="0.0" y="301" width="375" height="258"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="aXM-2d-Unf">
-                                            <size key="itemSize" width="150" height="150"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <label key="backgroundView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kFO-68-S7q">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="258"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="PhotoCell" id="BXc-zI-H2I" userLabel="PhotoCell" customClass="PhotoCell" customModule="virtual_tourist" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsCompass="NO" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LK6-6o-zo6">
+                                <rect key="frame" x="0.0" y="64" width="375" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="VtT-Cr-Cfm"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="ZIj-ph-iMC"/>
+                                </constraints>
+                            </mapView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4r3-ZD-Jeg">
+                                <rect key="frame" x="0.0" y="364" width="375" height="273"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="aXM-2d-Unf">
+                                    <size key="itemSize" width="150" height="150"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <label key="backgroundView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kFO-68-S7q">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="273"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="BXc-zI-H2I" userLabel="PhotoCell" customClass="PhotoCell" customModule="virtual_tourist" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadingImage" translatesAutoresizingMaskIntoConstraints="NO" id="5pD-VQ-e4q">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadingImage" translatesAutoresizingMaskIntoConstraints="NO" id="5pD-VQ-e4q">
-                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="0.0"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                </view>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="5pD-VQ-e4q" secondAttribute="trailing" id="Jvh-BJ-htW"/>
-                                                    <constraint firstItem="5pD-VQ-e4q" firstAttribute="top" secondItem="BXc-zI-H2I" secondAttribute="top" id="iK9-9L-Q4v"/>
-                                                    <constraint firstItem="5pD-VQ-e4q" firstAttribute="leading" secondItem="BXc-zI-H2I" secondAttribute="leading" id="keF-vu-TZl"/>
-                                                    <constraint firstAttribute="bottom" secondItem="5pD-VQ-e4q" secondAttribute="bottom" id="sdg-Kw-Lhy"/>
-                                                </constraints>
-                                                <connections>
-                                                    <outlet property="imageView" destination="5pD-VQ-e4q" id="F0G-ee-ZPF"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="5pD-VQ-e4q" secondAttribute="trailing" id="Jvh-BJ-htW"/>
+                                            <constraint firstItem="5pD-VQ-e4q" firstAttribute="top" secondItem="BXc-zI-H2I" secondAttribute="top" id="iK9-9L-Q4v"/>
+                                            <constraint firstItem="5pD-VQ-e4q" firstAttribute="leading" secondItem="BXc-zI-H2I" secondAttribute="leading" id="keF-vu-TZl"/>
+                                            <constraint firstAttribute="bottom" secondItem="5pD-VQ-e4q" secondAttribute="bottom" id="sdg-Kw-Lhy"/>
+                                        </constraints>
                                         <connections>
-                                            <outlet property="dataSource" destination="mg1-oL-JNX" id="j51-jR-xIY"/>
-                                            <outlet property="delegate" destination="mg1-oL-JNX" id="L4w-EI-Hpd"/>
+                                            <outlet property="imageView" destination="5pD-VQ-e4q" id="F0G-ee-ZPF"/>
                                         </connections>
-                                    </collectionView>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="mg1-oL-JNX" id="j51-jR-xIY"/>
+                                    <outlet property="delegate" destination="mg1-oL-JNX" id="L4w-EI-Hpd"/>
+                                </connections>
+                            </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="l8Z-ma-o3d">
+                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3PR-ow-2mB">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
+                                        <state key="normal" title="Delete Pin"/>
+                                        <connections>
+                                            <action selector="deleteMapPoint:" destination="mg1-oL-JNX" eventType="touchUpInside" id="SOv-7o-p4I"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaW-cY-f5Z" userLabel="Delete photos">
+                                        <rect key="frame" x="125" y="0.0" width="125" height="30"/>
+                                        <state key="normal" title="Delete photos"/>
+                                        <connections>
+                                            <action selector="deletePhotos:" destination="mg1-oL-JNX" eventType="touchUpInside" id="Xm7-Yf-xsQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTY-8Y-Ryb">
+                                        <rect key="frame" x="250" y="0.0" width="125" height="30"/>
+                                        <state key="normal" title="New collection"/>
+                                        <connections>
+                                            <action selector="loadNewCollection:" destination="mg1-oL-JNX" eventType="touchUpInside" id="o84-NA-1SQ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3SH-FN-wW2">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="UWd-D8-chC"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem style="plain" id="aqq-Wm-H69">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gNO-7a-jWm">
-                                            <rect key="frame" x="16" y="0.0" width="90" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Delete Pin"/>
-                                            <connections>
-                                                <action selector="deleteMapPoint:" destination="mg1-oL-JNX" eventType="touchUpInside" id="aKS-g8-yjb"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="6il-dr-bxX"/>
-                                    <barButtonItem style="plain" id="k92-sW-iAm">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lXc-Rb-D4I" userLabel="Delete photos">
-                                            <rect key="frame" x="139.5" y="7" width="96" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Delete photos"/>
-                                            <connections>
-                                                <action selector="deletePhotos:" destination="mg1-oL-JNX" eventType="touchUpInside" id="ifI-D4-rRv"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="fSD-m8-sQf"/>
-                                    <barButtonItem style="plain" id="K7Z-Qn-eMB">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7JG-Yx-jIg">
-                                            <rect key="frame" x="258" y="7" width="101" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="New collection"/>
-                                            <connections>
-                                                <action selector="loadNewCollection:" destination="mg1-oL-JNX" eventType="touchUpInside" id="vl9-Ss-cVq"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="42r-ef-AqM" firstAttribute="top" secondItem="R3x-np-nbu" secondAttribute="top" id="7be-3t-S9q"/>
-                            <constraint firstItem="3SH-FN-wW2" firstAttribute="bottom" secondItem="R3x-np-nbu" secondAttribute="bottom" id="FwY-kw-xjM"/>
-                            <constraint firstItem="3SH-FN-wW2" firstAttribute="leading" secondItem="R3x-np-nbu" secondAttribute="leading" id="RFQ-2T-ZkJ"/>
-                            <constraint firstItem="42r-ef-AqM" firstAttribute="leading" secondItem="R3x-np-nbu" secondAttribute="leading" id="RT9-SE-GoZ"/>
-                            <constraint firstItem="3SH-FN-wW2" firstAttribute="trailing" secondItem="R3x-np-nbu" secondAttribute="trailing" id="lZm-ZH-qUC"/>
-                            <constraint firstItem="42r-ef-AqM" firstAttribute="trailing" secondItem="R3x-np-nbu" secondAttribute="trailing" id="puj-5X-Mth"/>
-                            <constraint firstItem="3SH-FN-wW2" firstAttribute="top" secondItem="42r-ef-AqM" secondAttribute="bottom" id="vmU-51-5Lg"/>
+                            <constraint firstItem="4r3-ZD-Jeg" firstAttribute="top" secondItem="LK6-6o-zo6" secondAttribute="bottom" id="Bxn-Sw-w8Y"/>
+                            <constraint firstItem="LK6-6o-zo6" firstAttribute="leading" secondItem="R3x-np-nbu" secondAttribute="leading" id="Ivj-So-sL5"/>
+                            <constraint firstItem="l8Z-ma-o3d" firstAttribute="top" secondItem="4r3-ZD-Jeg" secondAttribute="bottom" id="Ome-Jm-cmF"/>
+                            <constraint firstItem="R3x-np-nbu" firstAttribute="trailing" secondItem="l8Z-ma-o3d" secondAttribute="trailing" id="ZWh-3r-gq9"/>
+                            <constraint firstItem="LK6-6o-zo6" firstAttribute="top" secondItem="R3x-np-nbu" secondAttribute="top" id="c2J-if-9vh"/>
+                            <constraint firstItem="LK6-6o-zo6" firstAttribute="trailing" secondItem="R3x-np-nbu" secondAttribute="trailing" id="e7k-iH-OVT"/>
+                            <constraint firstItem="4r3-ZD-Jeg" firstAttribute="trailing" secondItem="R3x-np-nbu" secondAttribute="trailing" id="feM-4j-LwF"/>
+                            <constraint firstItem="l8Z-ma-o3d" firstAttribute="leading" secondItem="R3x-np-nbu" secondAttribute="leading" id="ngZ-Rx-Bpe"/>
+                            <constraint firstItem="R3x-np-nbu" firstAttribute="bottom" secondItem="l8Z-ma-o3d" secondAttribute="bottom" id="oeD-X7-i0X"/>
+                            <constraint firstItem="4r3-ZD-Jeg" firstAttribute="leading" secondItem="R3x-np-nbu" secondAttribute="leading" id="yMJ-gL-Vp2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="R3x-np-nbu"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="4r3-ZD-Jeg" id="fQp-15-DSP"/>
-                        <outlet property="deletePhotosButton" destination="lXc-Rb-D4I" id="jeG-Ez-kRO"/>
+                        <outlet property="deletePhotosButton" destination="PaW-cY-f5Z" id="bIA-yL-tVt"/>
                         <outlet property="mapView" destination="LK6-6o-zo6" id="cag-oN-BXm"/>
-                        <outlet property="newCollectionButton" destination="7JG-Yx-jIg" id="w5Z-un-qlt"/>
+                        <outlet property="newCollectionButton" destination="YTY-8Y-Ryb" id="qWo-cK-MAm"/>
                         <outlet property="noPhotosText" destination="kFO-68-S7q" id="nvS-GS-Cq6"/>
                     </connections>
                 </viewController>
