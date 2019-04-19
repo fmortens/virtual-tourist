@@ -50,19 +50,7 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
         
             mapView.addAnnotation(annotation)
         
-            let region = MKCoordinateRegion(
-                center: CLLocationCoordinate2D(
-                    latitude: Double(mapPoint.latitude),
-                    longitude: Double(mapPoint.longitude)
-                ),
-                latitudinalMeters: CLLocationDistance(exactly: 10000)!,
-                longitudinalMeters: CLLocationDistance(exactly: 10000)!
-            )
-        
-            mapView.setRegion(
-                mapView.regionThatFits(region),
-                animated: true
-            )
+            setupLocationMap(mapPoint)
             
             if mapPoint.photosLoaded {
                 
@@ -87,6 +75,22 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
         super.viewWillDisappear(animated)
         
         fetchedResultsController = nil
+    }
+    
+    fileprivate func setupLocationMap(_ mapPoint: MapPoint) {
+        let region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(
+                latitude: Double(mapPoint.latitude),
+                longitude: Double(mapPoint.longitude)
+            ),
+            latitudinalMeters: CLLocationDistance(exactly: 10000)!,
+            longitudinalMeters: CLLocationDistance(exactly: 10000)!
+        )
+        
+        mapView.setRegion(
+            mapView.regionThatFits(region),
+            animated: true
+        )
     }
     
     fileprivate func setupFetchedResultsController() {
