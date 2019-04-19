@@ -115,6 +115,17 @@
                                         </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="6il-dr-bxX"/>
+                                    <barButtonItem style="plain" id="k92-sW-iAm">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lXc-Rb-D4I" userLabel="Delete photos">
+                                            <rect key="frame" x="139.5" y="7" width="96" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Delete photos"/>
+                                            <connections>
+                                                <action selector="deletePhotos:" destination="mg1-oL-JNX" eventType="touchUpInside" id="ifI-D4-rRv"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="fSD-m8-sQf"/>
                                     <barButtonItem style="plain" id="K7Z-Qn-eMB">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7JG-Yx-jIg">
                                             <rect key="frame" x="258" y="7" width="101" height="30"/>

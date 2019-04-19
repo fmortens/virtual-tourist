@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreData
 
-class AlbumModalViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -18,6 +18,7 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource, UI
     var dataController: DataController!
     var mapPoint: MapPoint!
     var fetchedResultsController: NSFetchedResultsController<Photo>!
+    var photosToDelete = [Photo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,56 +135,6 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource, UI
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let numberOfItemsInSection = fetchedResultsController.sections![section].numberOfObjects
-        print("numberOfItemsInSection: \(numberOfItemsInSection)")
-        
-        return numberOfItemsInSection
-    }
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
-        
-        let photo = fetchedResultsController.object(at: indexPath)
-        
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "PhotoCell",
-            for: indexPath
-        ) as! PhotoCell
-
-        
-        cell.imageView.image = UIImage(data: photo.data!)
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = collectionView.bounds.width/3.0
-        let cellHeight = cellWidth
-        
-        return CGSize(width: cellWidth, height: cellHeight)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if let cell = collectionView.cellForItem(at: indexPath) {
-            cell.layer.opacity = 0.5
-            print("Selected \(indexPath)")
-        }
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        
-        if let cell = collectionView.cellForItem(at: indexPath) {
-            cell.layer.opacity = 1
-            print("Deselected \(indexPath)")
-        }
-        
-    }
-    
     @IBAction func deleteMapPoint(_ sender: Any) {
         
         if let mapPoint = self.mapPoint {
@@ -193,6 +144,7 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource, UI
         }
         
     }
+    
     @IBAction func loadNewCollection(_ sender: Any) {
         
         if let mapPoint = self.mapPoint,
@@ -205,20 +157,89 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource, UI
                 try? dataController.viewContext.save()
             }
             
-            
-            
             FlickrClient.searchImages(
-                    latitude: Double(mapPoint.latitude),
-                    longitude: Double(mapPoint.longitude),
-                    completion: handleSearchImages
-                )
+                latitude: Double(mapPoint.latitude),
+                longitude: Double(mapPoint.longitude),
+                completion: handleSearchImages
+            )
             
+        }
+        
+    }
+    
+    @IBAction func deletePhotos(_ sender: Any) {
+        
+        for photo in photosToDelete {
+            dataController.viewContext.delete(photo as NSManagedObject)
+            try? dataController.viewContext.save()
         }
         
     }
 }
 
-extension AlbumModalViewController:NSFetchedResultsControllerDelegate {
+extension AlbumModalViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let numberOfItemsInSection = fetchedResultsController.sections![section].numberOfObjects
+        print("numberOfItemsInSection: \(numberOfItemsInSection)")
+        
+        return numberOfItemsInSection
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+        ) -> UICollectionViewCell {
+        
+        let photo = fetchedResultsController.object(at: indexPath)
+        
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "PhotoCell",
+            for: indexPath
+            ) as! PhotoCell
+        
+        
+        cell.imageView.image = UIImage(data: photo.data!)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = collectionView.bounds.width / 3.0
+        let cellHeight = cellWidth
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            cell.layer.opacity = 0.5
+            
+            let photo = fetchedResultsController.object(at: indexPath)
+            
+            photosToDelete.append(photo)
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            cell.layer.opacity = 1
+            
+            let photo = fetchedResultsController.object(at: indexPath)
+            if let index = photosToDelete.index(of: photo) {
+                photosToDelete.remove(at: index)
+            }
+            
+        }
+        
+    }
+    
+}
+
+extension AlbumModalViewController: NSFetchedResultsControllerDelegate {
     
     func controller(
         _ controller: NSFetchedResultsController<NSFetchRequestResult>,
@@ -265,16 +286,6 @@ extension AlbumModalViewController:NSFetchedResultsControllerDelegate {
             case .update, .move:
                 fatalError("Invalid change type in controller(_:didChange:atSectionIndex:for:). Only .insert or .delete should be possible.")
         }
-    }
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        print("begin updates?")
-        //tableView.beginUpdates()
-    }
-
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        //tableView.endUpdates()
-        print("end updates?")
     }
     
 }
