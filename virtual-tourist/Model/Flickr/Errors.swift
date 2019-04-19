@@ -11,4 +11,5 @@ import Foundation
 enum ErrorType: String {
     case NetworkError = "A network error occurred"
     case DecodeError = "Could not decode response from Flickr"
+    case DataError = "Could store data"
 }

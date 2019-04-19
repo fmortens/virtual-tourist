@@ -109,7 +109,6 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
         }
     }
     
-    
     func handleSearchImages(searchResults: FlickrPhotos?, success: Bool, error: ErrorType?) {
         
         if let photos = searchResults?.photo {
@@ -117,22 +116,23 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
             if photos.count == 0 {
                 noPhotosText.isHidden = false
             } else {
-            noPhotosText.isHidden = true
-            for flickPhoto: FlickrPhoto in photos {
-                let photo = Photo(context: dataController.viewContext)
+                noPhotosText.isHidden = true
+                for flickPhoto: FlickrPhoto in photos {
+                    let photo = Photo(context: dataController.viewContext)
                 
-                photo.url = URL(string: flickPhoto.url)
-                photo.mapPoint = mapPoint
-                photo.creationDate = Date()
+                    photo.url = URL(string: flickPhoto.url)
+                    photo.mapPoint = mapPoint
+                    photo.creationDate = Date()
                 
-                try? dataController.viewContext.save()
+                    try? dataController.viewContext.save()
                 
-                
-                                FlickrClient.loadImage(
-                                    photo: photo,
-                                    dataController: dataController
-                                )
-            }
+                    // Start load the actual images
+                    FlickrClient.loadImage(
+                        photo: photo,
+                        dataController: dataController,
+                        completion: handleLoadImage
+                    )
+                }
             }
         }
         
@@ -141,17 +141,15 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
         
     }
     
-//    func handleLoadImage(imageData: Data?, success: Bool, error: ErrorType?) {
-//        if success {
-//            let photo = Photo(context: dataController.viewContext)
-//
-//            photo.data = imageData
-//            photo.mapPoint = mapPoint
-//            photo.creationDate = Date()
-//
-//            try? dataController.viewContext.save()
-//        }
-//    }
+    func handleLoadImage(success: Bool, error: ErrorType?) {
+        // I thought I could show friendly error messages to the user here
+        if success {
+            print("Image loaded successfully")
+        } else {
+            print("Image failed to load")
+        }
+        
+    }
     
     @IBAction func deleteMapPoint(_ sender: Any) {
         
@@ -188,7 +186,7 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
     @IBAction func deletePhotos(_ sender: Any) {
         
         for photo in photosToDelete {
-            dataController.viewContext.delete(photo as NSManagedObject)
+            dataController.viewContext.delete(photo)
             try? dataController.viewContext.save()
         }
         
@@ -198,8 +196,7 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
 extension AlbumModalViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mapPoint.photos?.count ?? 0
-        //return fetchedResultsController.sections?[section].numberOfObjects ?? 0
+        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     func collectionView(
@@ -268,19 +265,15 @@ extension AlbumModalViewController: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             collectionView.insertItems(at: [newIndexPath!])
-            
-            if !noPhotosText.isHidden {
-                noPhotosText.isHidden = true
-            }
+            noPhotosText.isHidden = true
             
         case .delete:
             
-            if mapPoint.photos!.count > 1 {
-                collectionView.deleteItems(at: [indexPath!])
-            } else {
-            
-            
+            if mapPoint.photos!.count == 0 {
                 noPhotosText.isHidden = false
+                collectionView.reloadData()
+            } else {
+                collectionView.deleteItems(at: [indexPath!])
             }
             
         case .update:
@@ -288,26 +281,6 @@ extension AlbumModalViewController: NSFetchedResultsControllerDelegate {
             
         case .move:
             collectionView.moveItem(at: indexPath!, to: newIndexPath!)
-        }
-    }
-    
-    func controller(
-        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
-        didChange sectionInfo: NSFetchedResultsSectionInfo,
-        atSectionIndex sectionIndex: Int,
-        for type: NSFetchedResultsChangeType
-    ) {
-        let indexSet = IndexSet(integer: sectionIndex)
-        
-        switch type {
-            case .insert:
-                collectionView.insertSections(indexSet)
-            break
-            case .delete:
-                collectionView.deleteSections(indexSet)
-            break
-            case .update, .move:
-                fatalError("Invalid change type in controller(_:didChange:atSectionIndex:for:). Only .insert or .delete should be possible.")
         }
     }
     

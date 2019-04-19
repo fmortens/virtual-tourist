@@ -74,20 +74,33 @@ class FlickrClient {
     
     class func loadImage(
         photo: Photo,
-        dataController: DataController
+        dataController: DataController,
+        completion: @escaping (Bool, ErrorType?) -> Void
     ) {
         
         let downloadQueue = DispatchQueue(label: "download", attributes: [])
             
         downloadQueue.async { () -> Void in
             
-            let url = photo.url
-            photo.data = try! Data(contentsOf: url!)
-                
-            DispatchQueue.main.async(execute: { () -> Void in
-                try! dataController.viewContext.save()
-            })
-        }
+            do {
+                let url = photo.url
+                photo.data = try Data(contentsOf: url!)
+            } catch {
+                completion(false, ErrorType.NetworkError)
+            }
             
+            DispatchQueue.main.async(execute: { () -> Void in
+                do {
+                    try dataController.viewContext.save()
+                    completion(true, nil)
+                } catch {
+                    completion(false, ErrorType.DataError)
+                }
+            })
+            
+            
+            
+        }
+        
     }
 }
