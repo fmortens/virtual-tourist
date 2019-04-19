@@ -85,20 +85,19 @@ class FlickrClient {
             do {
                 let url = photo.url
                 photo.data = try Data(contentsOf: url!)
+                
+                DispatchQueue.main.async(execute: { () -> Void in
+                    do {
+                        try dataController.viewContext.save()
+                        completion(true, nil)
+                    } catch {
+                        completion(false, ErrorType.DataError)
+                    }
+                })
+                
             } catch {
                 completion(false, ErrorType.NetworkError)
             }
-            
-            DispatchQueue.main.async(execute: { () -> Void in
-                do {
-                    try dataController.viewContext.save()
-                    completion(true, nil)
-                } catch {
-                    completion(false, ErrorType.DataError)
-                }
-            })
-            
-            
             
         }
         

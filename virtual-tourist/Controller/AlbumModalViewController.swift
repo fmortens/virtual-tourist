@@ -16,6 +16,9 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var deletePhotosButton: UIButton!
+    @IBOutlet weak var newCollectionButton: UIButton!
+    
     var dataController: DataController!
     var mapPoint: MapPoint!
     var fetchedResultsController: NSFetchedResultsController<Photo>!
@@ -26,6 +29,8 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
         
         collectionView.allowsMultipleSelection = true
         noPhotosText.isHidden = true
+        deletePhotosButton.isEnabled = false
+        newCollectionButton.isEnabled = false
         
         setupFetchedResultsController()
     }
@@ -60,9 +65,13 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
             )
             
             if mapPoint.photosLoaded {
+                
                 if mapPoint.photos?.count == 0 {
                     noPhotosText.isHidden = false
                 }
+                
+                newCollectionButton.isEnabled = true
+                
             } else {
                 noPhotosText.isHidden = true
                 FlickrClient.searchImages(
@@ -116,6 +125,7 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
             if photos.count == 0 {
                 noPhotosText.isHidden = false
             } else {
+                newCollectionButton.isEnabled = true
                 noPhotosText.isHidden = true
                 for flickPhoto: FlickrPhoto in photos {
                     let photo = Photo(context: dataController.viewContext)
@@ -166,12 +176,12 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
         if let mapPoint = self.mapPoint,
            let photos = mapPoint.photos {
             
-            mapPoint.photosLoaded = false
-            
             for photo in photos {
                 dataController.viewContext.delete(photo as! NSManagedObject)
-                try? dataController.viewContext.save()
             }
+            
+            mapPoint.photosLoaded = false
+            try? dataController.viewContext.save()
             
             FlickrClient.searchImages(
                 latitude: Double(mapPoint.latitude),
@@ -189,6 +199,8 @@ class AlbumModalViewController: UIViewController, UICollectionViewDataSource {
             dataController.viewContext.delete(photo)
             try? dataController.viewContext.save()
         }
+        
+        deletePhotosButton.isEnabled = false
         
     }
 }
@@ -237,6 +249,7 @@ extension AlbumModalViewController: UICollectionViewDelegateFlowLayout, UICollec
             cell.layer.opacity = 0.5
             let photo = fetchedResultsController.object(at: indexPath)
             photosToDelete.append(photo)
+            deletePhotosButton.isEnabled = true
         }
         
     }
@@ -249,6 +262,10 @@ extension AlbumModalViewController: UICollectionViewDelegateFlowLayout, UICollec
             let photo = fetchedResultsController.object(at: indexPath)
             if let index = photosToDelete.index(of: photo) {
                 photosToDelete.remove(at: index)
+            }
+            
+            if photosToDelete.count == 0 {
+                deletePhotosButton.isEnabled = false
             }
             
         }

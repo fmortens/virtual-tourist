@@ -160,7 +160,9 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="4r3-ZD-Jeg" id="fQp-15-DSP"/>
+                        <outlet property="deletePhotosButton" destination="lXc-Rb-D4I" id="jeG-Ez-kRO"/>
                         <outlet property="mapView" destination="LK6-6o-zo6" id="cag-oN-BXm"/>
+                        <outlet property="newCollectionButton" destination="7JG-Yx-jIg" id="w5Z-un-qlt"/>
                         <outlet property="noPhotosText" destination="kFO-68-S7q" id="nvS-GS-Cq6"/>
                     </connections>
                 </viewController>
