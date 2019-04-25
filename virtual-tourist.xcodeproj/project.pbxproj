@@ -11,6 +11,7 @@
 		DE089BB5224FEBDC009C5E74 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE089BB4224FEBDC009C5E74 /* DataController.swift */; };
 		DE3052EA225A49CE005D5535 /* AlbumModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3052E9225A49CE005D5535 /* AlbumModalViewController.swift */; };
 		DE3D34282268F9A300300009 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D34272268F9A300300009 /* PhotoCell.swift */; };
+		DE73638322722D200004A1FE /* FlickrApi.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE73638222722D200004A1FE /* FlickrApi.plist */; };
 		DEB025BC22442D0A00F39A74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB025BB22442D0A00F39A74 /* AppDelegate.swift */; };
 		DEB025C122442D0A00F39A74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEB025BF22442D0A00F39A74 /* Main.storyboard */; };
 		DEB025C322442D0B00F39A74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEB025C222442D0B00F39A74 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		DE089BB4224FEBDC009C5E74 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		DE3052E9225A49CE005D5535 /* AlbumModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModalViewController.swift; sourceTree = "<group>"; };
 		DE3D34272268F9A300300009 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		DE73638222722D200004A1FE /* FlickrApi.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FlickrApi.plist; sourceTree = "<group>"; };
 		DEB025B822442D0A00F39A74 /* virtual-tourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "virtual-tourist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEB025BB22442D0A00F39A74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEB025C022442D0A00F39A74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		DEF0FDBB22663E1500FB5E08 /* Flickr */ = {
 			isa = PBXGroup;
 			children = (
+				DE73638222722D200004A1FE /* FlickrApi.plist */,
 				DEF0FDB722663A3200FB5E08 /* FlickrClient.swift */,
 				DEF0FDBC2266527000FB5E08 /* Errors.swift */,
 				DEF0FDB922663D3600FB5E08 /* FlickrApi.plist */,
@@ -185,6 +188,7 @@
 				DEF0FDBA22663D3600FB5E08 /* FlickrApi.plist in Resources */,
 				DEB025C322442D0B00F39A74 /* Assets.xcassets in Resources */,
 				DEB025C122442D0A00F39A74 /* Main.storyboard in Resources */,
+				DE73638322722D200004A1FE /* FlickrApi.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
