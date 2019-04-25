@@ -224,6 +224,7 @@ extension AlbumModalViewController: UICollectionViewDelegateFlowLayout, UICollec
         cellForItemAt indexPath: IndexPath
         ) -> UICollectionViewCell {
         
+        
         let photo = fetchedResultsController.object(at: indexPath)
         
         let cell = collectionView.dequeueReusableCell(
@@ -264,7 +265,7 @@ extension AlbumModalViewController: UICollectionViewDelegateFlowLayout, UICollec
             cell.layer.opacity = 1
             
             let photo = fetchedResultsController.object(at: indexPath)
-            if let index = photosToDelete.index(of: photo) {
+            if let index = photosToDelete.firstIndex(of: photo) {
                 photosToDelete.remove(at: index)
             }
             
@@ -306,6 +307,8 @@ extension AlbumModalViewController: NSFetchedResultsControllerDelegate {
             
         case .move:
             collectionView.moveItem(at: indexPath!, to: newIndexPath!)
+        @unknown default:
+            break
         }
     }
     

@@ -19,7 +19,6 @@
 		DEB025CF2244384400F39A74 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB025CE2244384400F39A74 /* MapViewController.swift */; };
 		DEF0FDB6226622B300FB5E08 /* AnnotationWithObjectId.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF0FDB5226622B300FB5E08 /* AnnotationWithObjectId.swift */; };
 		DEF0FDB822663A3200FB5E08 /* FlickrClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF0FDB722663A3200FB5E08 /* FlickrClient.swift */; };
-		DEF0FDBA22663D3600FB5E08 /* FlickrApi.plist in Resources */ = {isa = PBXBuildFile; fileRef = DEF0FDB922663D3600FB5E08 /* FlickrApi.plist */; };
 		DEF0FDBD2266527000FB5E08 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF0FDBC2266527000FB5E08 /* Errors.swift */; };
 		DEF0FDBF2266552B00FB5E08 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF0FDBE2266552B00FB5E08 /* SearchResponse.swift */; };
 /* End PBXBuildFile section */
@@ -158,6 +157,7 @@
 				TargetAttributes = {
 					DEB025B722442D0A00F39A74 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -185,7 +185,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEB025C622442D0B00F39A74 /* LaunchScreen.storyboard in Resources */,
-				DEF0FDBA22663D3600FB5E08 /* FlickrApi.plist in Resources */,
 				DEB025C322442D0B00F39A74 /* Assets.xcassets in Resources */,
 				DEB025C122442D0A00F39A74 /* Main.storyboard in Resources */,
 				DE73638322722D200004A1FE /* FlickrApi.plist in Resources */,
@@ -363,8 +362,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "im.mortensen.virtual-tourist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -381,8 +380,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "im.mortensen.virtual-tourist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
